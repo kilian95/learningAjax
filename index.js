@@ -8,6 +8,12 @@ $( document ).ready(function() {
 	});
 
 
+  $("nav li").click(function() {
+    $("nav li").removeClass('navCurrent');
+    $(this).addClass('navCurrent');
+  });
+
+
 	//---------tabs ----------------------------
  $('ul.navbar-nav li').click(function(){
     var tab_id = $(this).attr('data-tab');

@@ -3,23 +3,17 @@
 }
 
 .col-sm-4,.col-sm-2 img{
-	
 	cursor: pointer;
-	
-	
 }
 
 #newsItems{
-	margin-left: 50px!important;
+	margin-left: 60px!important;
+	margin-right: 60px!important;
 }
 
 .modal-image{
 	margin-bottom: 20px;
 }
-
-/* tabs -----------------------*/
-
-
 
 .tab-content{
     display: none;
@@ -27,4 +21,12 @@
 
 .tab-content.current{
     display: inherit;
+}
+
+#popular{
+	border-left-style: outset;
+}
+
+.navCurrent{
+	background-color: #D2D2CE;
 }
