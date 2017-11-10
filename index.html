@@ -16,10 +16,10 @@
         </div>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active">
+        <li class="tab-link current" data-tab="tab-1">
           <a href="#">Home</a>
         </li>
-        <li>
+        <li class="tab-link" data-tab="tab-2">
          <a href="#">World</a>
         </li>
         <li>
@@ -38,60 +38,107 @@
     </div>
   </nav>
 
-  <div class="container-fluid" id="newsItems">
-    <div class="row">
-      <div class="col-sm-2">
-        <h3 class="title"><a href="#">Title</a></h3>
-        <p> Woke prism blue bottle lumbersexual, forage tbh hella sustainable single-origin coffee celiac typewriter hashtag </p>
-      </div>
-      <div class="col-sm-4">
-        <img class="img-preview" src="test.jpg" width="100%">
+  <div id="tab-1" class="tab-content current">
+    <div class="container-fluid" id="newsItems">
+      <h2> Home </h2>
+      <div class="row">
+        <div class="col-sm-2">
+          <h3 class="title"><a href="#">Title</a></h3>
+          <p> Woke prism blue bottle lumbersexual, forage tbh hella sustainable single-origin coffee celiac typewriter hashtag </p>
+        </div>
+        <div class="col-sm-4">
+          <img class="img-preview" src="test.jpg" width="100%">
+        </div>
+
+        <div class="col-sm-6">
+          <h3> Most Popular </h3>
+        </div>
+      </div>  
+
+      <div class="row">
+        <div class="col-sm-2">
+          <img class="img-preview" src="test.jpg" width="100%">
+          <h3 class="title"><a href="#">Title</a></h3>
+          <p> Woke prism blue bottle lumbersexual, forage tbh hella sustainable single-origin coffee celiac typewriter hashtag</p>
+        </div>
+        <div class="col-sm-2">
+          <img class="img-preview" src="test.jpg" width="100%">
+          <h3 class="title"><a href="#">Title</a></h3>
+          <p> Woke prism blue bottle lumbersexual, forage tbh hella sustainable single-origin coffee celiac typewriter hashtag </p>
+        </div>
+        <div class="col-sm-2">
+          <img class="img-preview" src="test.jpg" width="100%">
+          <h3 class="title"><a href="#">Title</a></h3>
+          <p> Woke prism blue bottle lumbersexual, forage tbh hella sustainable single-origin coffee celiac typewriter hashtag </p>
+        </div>
       </div>
     </div>  
 
-    <div class="row">
-      <div class="col-sm-2">
-        <img class="img-preview" src="test.jpg" width="100%">
-        <h3 class="title"><a href="#">Title</a></h3>
-        <p> Woke prism blue bottle lumbersexual, forage tbh hella sustainable single-origin coffee celiac typewriter hashtag</p>
-      </div>
-      <div class="col-sm-2">
-        <img class="img-preview" src="test.jpg" width="100%">
-        <h3 class="title"><a href="#">Title</a></h3>
-        <p> Woke prism blue bottle lumbersexual, forage tbh hella sustainable single-origin coffee celiac typewriter hashtag </p>
-      </div>
-      <div class="col-sm-2">
-        <img class="img-preview" src="test.jpg" width="100%">
-        <h3 class="title"><a href="#">Title</a></h3>
-        <p> Woke prism blue bottle lumbersexual, forage tbh hella sustainable single-origin coffee celiac typewriter hashtag </p>
-      </div>
-    </div>
-  </div>  
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
 
-  <!-- Modal -->
-  <div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Woke prism blue bottle lumbersexual</h4>
-        </div>
-        <div class="modal-body">
-          <div class="modal-image">
-            <img src="test.jpg" width="100%">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Woke prism blue bottle lumbersexual</h4>
           </div>
-          <p>Woke prism blue bottle lumbersexual, forage tbh hella sustainable single-origin coffee celiac typewriter hashtag direct trade PBR whatever. Next level chillwave celiac, la croix squid cardigan hell of venmo knausgaard aesthetic chicharrones paleo fam palo santo sriracha. Hexagon selvage salvia, raw denim pug single-origin coffee swag unicorn meditation. Plaid kinfolk shabby chic, gentrify wayfarers pabst swag copper mug drinking vinegar trust fund. Yuccie listicle raw denim messenger bag succulents street art, direct trade iPhone chia irony marfa. Shoreditch tofu umami pitchfork</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <div class="modal-body">
+            <div class="modal-image">
+              <img src="test.jpg" width="100%">
+            </div>
+            <p>Woke prism blue bottle lumbersexual, forage tbh hella sustainable single-origin coffee celiac typewriter hashtag direct trade PBR whatever. Next level chillwave celiac, la croix squid cardigan hell of venmo knausgaard aesthetic chicharrones paleo fam palo santo sriracha. Hexagon selvage salvia, raw denim pug single-origin coffee swag unicorn meditation. Plaid kinfolk shabby chic, gentrify wayfarers pabst swag copper mug drinking vinegar trust fund. Yuccie listicle raw denim messenger bag succulents street art, direct trade iPhone chia irony marfa. Shoreditch tofu umami pitchfork</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>
+  </div><!-- tab   -->
+
+
+<!--======================= world section =============================-->
+  <div id="tab-2" class="tab-content">
+     <div class="container-fluid" id="newsItems">
+      <h2> World </h2>
+      <div class="row">
+        <div class="col-sm-2">
+          <h3 class="title"><a href="#">Title</a></h3>
+          <p> Woke prism blue bottle lumbersexual, forage tbh hella sustainable single-origin coffee celiac typewriter hashtag </p>
+        </div>
+        <div class="col-sm-4">
+          <img class="img-preview" src="test1.jpg" width="100%">
+        </div>
+      </div>  
+
+      <div class="row">
+        <div class="col-sm-2">
+          <img class="img-preview" src="test1.jpg" width="100%">
+          <h3 class="title"><a href="#">Title</a></h3>
+          <p> Woke prism blue bottle lumbersexual, forage tbh hella sustainable single-origin coffee celiac typewriter hashtag</p>
+        </div>
+        <div class="col-sm-2">
+          <img class="img-preview" src="test1.jpg" width="100%">
+          <h3 class="title"><a href="#">Title</a></h3>
+          <p> Woke prism blue bottle lumbersexual, forage tbh hella sustainable single-origin coffee celiac typewriter hashtag </p>
+        </div>
+        <div class="col-sm-2">
+          <img class="img-preview" src="test1.jpg" width="100%">
+          <h3 class="title"><a href="#">Title</a></h3>
+          <p> Woke prism blue bottle lumbersexual, forage tbh hella sustainable single-origin coffee celiac typewriter hashtag </p>
+        </div>
+      </div>
+    </div>  
+
+   
   </div>
-
-
+      <div id="tab-3" class="tab-content">
+        Not all murals in Northern Ireland are directly political or sectarian in nature, with some commemorating events such as the Great Irish Famine (1845–1849), and other moments in Irish history. Many portray events from Irish mythology, and images from Irish myths are often incorporated into political murals. Murals representing peace and tolerance are becoming increasingly popular with school groups who have children either design or actually paint murals in areas around their schools. <br>
+        
+      </div>
+    </div>
 
 </body>
 </html>	

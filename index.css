@@ -16,3 +16,15 @@
 .modal-image{
 	margin-bottom: 20px;
 }
+
+/* tabs -----------------------*/
+
+
+
+.tab-content{
+    display: none;
+}
+
+.tab-content.current{
+    display: inherit;
+}
