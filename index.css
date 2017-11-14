@@ -30,3 +30,14 @@
 .navCurrent{
 	background-color: #D2D2CE;
 }
+
+#search{
+	padding-top: 10px;
+}
+
+.box.panel.panel-default{
+	text-align: center;
+	width: 50%;
+	margin: auto;
+	margin-bottom: 20px;
+}

@@ -27,6 +27,12 @@ $( document ).ready(function() {
     $(this).addClass('navCurrent');
   });
 
+  $("#searchbtn").click(function() {
+    var input = $('#searchInput').val();
+    $("#tab-1").hide();
+    populateSearch(input);
+  });
+
 	//---------tabs ----------------------------
   $('ul.navbar-nav li').click(function(){
     var tab_id = $(this).attr('data-tab');
@@ -98,6 +104,8 @@ $( document ).ready(function() {
 });
 
 function populateHome(){
+  $("#searchResults").hide();
+   $("#tab-1").show();
     $.ajax( 
   {
       type: "GET",
@@ -121,6 +129,8 @@ function populateHome(){
 }
 
 function populateWorld(){
+  $("#searchResults").hide();
+  $("#tab-1").show();
    $.ajax( 
   {
       type: "GET",
@@ -142,3 +152,29 @@ function populateWorld(){
       }
   })
 }
+
+function populateSearch(input){
+  $("#searchResults").empty();
+  $.ajax( 
+  {
+      type: "GET",
+      dataType: "json",
+      cache: false,
+      url: "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + input + "&api-key=0bb02209eb014a849723a61d4455bb87",
+      success: function(data) 
+      {
+        
+        for (var i = 0; i < 5; i++)
+        {
+          $("#searchResults").append("<div class='box panel panel-default'><img src='test.jpg' height='180px'><h2 class='title'>" + data.response.docs[i].headline.main + 
+            "</h2><p id='desc'>" + data.response.docs[i].snippet + "</p><p><a href='" + data.response.docs[i].web_url + "'> New York Times source </a></p></div>")
+          console.log(data.response.docs[5].multimedia[1].url);
+
+          
+        }
+      }
+  })
+  
+}
+
+//new york times key 0bb02209eb014a849723a61d4455bb87
