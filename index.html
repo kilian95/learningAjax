@@ -35,14 +35,17 @@
          <a href="#entertainment">Entertainment</a>
         </li>
         <li id="search">
-              <input placeholder="Search..."  id="searchInput" type="text">
-              <button id="searchbtn" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button>
+          <span data-toggle="tooltip" title="Enter in a search term and click the search button to receive articles from the New York Times." data-placement="bottom" class="glyphicon glyphicon-info-sign"></span>
+          <input placeholder="Search..."  id="searchInput" type="text">
+          <button id="searchbtn" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button>     
         </li>
       </ul>
     </div>
   </nav>
 
   <div id="searchResults"></div>
+
+  <img src="http://www.flickr.com/photos/normko/38386281552/">
         
   <div id="tab-1" class="tab-content current">
     <div class="container-fluid" id="newsItems">
@@ -62,6 +65,7 @@
         <div id="mainImg" class="col-sm-4">
         </div>
         <div id="popular0" class="col-sm-2">
+          <div class="imgtPrev" id="pImg0"></div>
           <h4 id="popularTitle0" class="title"></h4>
           <p id="popularDesc0" class="desc"></p>
         </div>
@@ -69,27 +73,28 @@
 
       <div class="row">
         <div class="col-sm-2">
-          <div id="img0"></div>
+          <div class="imgtPrev" id="img0"></div>
           <h4 id="title0" class="title"></h4>
           <p id="desc0"></p>
         </div>
         <div class="col-sm-2">
-          <div id="img1"></div>
+          <div class="imgtPrev" id="img1"></div>
           <h4 id="title1" class="title"></h4>
           <p id="desc1" class="desc"></p>
         </div>
         <div class="col-sm-2">
-          <div id="img2"></div>
+          <div class="imgtPrev" id="img2"></div>
           <h4 id="title2" class="title"></h4>
           <p id="desc2" class="desc"></p>
         </div>
         <div class="col-sm-2">
-          <div id="img3"></div>
+          <div class="imgtPrev" id="img3"></div>
           <h4 id="title3" class="title"></h4>
           <p id="desc3" class="desc"></p>
         </div>
         <div id="popular1" class="col-sm-2">
-          <h3 id="popularTitle1" class="title"></h3>
+          <div class="imgtPrev" id="pImg1"></div>
+          <h4 id="popularTitle1" class="title"></h4>
           <p id="popularDesc1" class="desc"></p>
         </div>
         

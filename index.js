@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 
-  // $('body').load('./test.html');
+  $('[data-toggle="tooltip"]').tooltip();  
 
 	$(".title").click(function() {
 		$('#myModal').modal('show');
@@ -13,7 +13,7 @@ $( document ).ready(function() {
     }
     else{
       $(".modal-desc").empty().append($(this).next().text());
-      var img = $(this).siblings(".img-preview").attr('src');
+      var img = $(this).siblings(".imgtPrev").children(".img-preview").attr('src');
       $(".modal-image").empty().append("<img class='img-preview' src='"+ img + "' width='100%''>");
     }
 	});
@@ -36,7 +36,6 @@ $( document ).ready(function() {
 	//---------tabs ----------------------------
   $('ul.navbar-nav li').click(function(){
     var tab_id = $(this).attr('data-tab');
-
     switch(tab_id) {
       case "tab-1":
           populateHome();
@@ -96,7 +95,7 @@ $( document ).ready(function() {
           {
             $("#popularTitle" + i).append("<a href='#''>" + data.articles[i].title + "</a>");
             $("#popularDesc" + i).append(data.articles[i].description);
-            $("#popular" + i).prepend("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%''>");
+            $("#pImg" + i).append("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%''>");
             
           }
         }
@@ -153,8 +152,10 @@ function populateWorld(){
   })
 }
 
+
 function populateSearch(input){
   $("#searchResults").empty();
+  $("#searchResults").css("display", "block");
   $.ajax( 
   {
       type: "GET",
@@ -166,15 +167,10 @@ function populateSearch(input){
         
         for (var i = 0; i < 5; i++)
         {
-          $("#searchResults").append("<div class='box panel panel-default'><img src='test.jpg' height='180px'><h2 class='title'>" + data.response.docs[i].headline.main + 
-            "</h2><p id='desc'>" + data.response.docs[i].snippet + "</p><p><a href='" + data.response.docs[i].web_url + "'> New York Times source </a></p></div>")
-          console.log(data.response.docs[5].multimedia[1].url);
-
-          
+          $("#searchResults").append("<div class='box panel panel-default'><h2 class='title'>" + data.response.docs[i].headline.main + 
+            "</h2><p id='desc'>" + data.response.docs[i].snippet + "</p><p><a href='" + data.response.docs[i].web_url + "'> New York Times source </a></p></div>");
+           
         }
       }
   })
-  
 }
-
-//new york times key 0bb02209eb014a849723a61d4455bb87
