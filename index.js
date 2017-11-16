@@ -38,25 +38,24 @@ $( document ).ready(function() {
     var tab_id = $(this).attr('data-tab');
     switch(tab_id) {
       case "tab-1":
-          populateHome();
-          break;
+        populateHome();
+        break;
       case "tab-2":
-           populateWorld();
-          break;
+        populateWorld();
+        break;
       case "tab-3":
-          //populatePolitics();
-          break;
+        populatePolitics();
+        break;
       case "tab-4":
-          //populateTechnology();
-          break;
+        populateTechnology();
+        break;
       case "tab-5":
-          //populateScience();
-          break;
+        populateScience();
+        break;
       case "tab-6":
-          //populateEntertainment(); 
-          break;    
-      default:
-         //populateEntertainment(); 
+        populateEntertainment(); 
+        break;    
+     
     }
   })
 
@@ -71,13 +70,13 @@ $( document ).ready(function() {
         {
           $("#mainTitle").html("<a href='#''>" + data.articles[0].title + "</a>");
           $("#mainDesc").html(data.articles[0].description);
-          $("#mainImg").html("<img class='mainImg' src='"+ data.articles[0].urlToImage + "' width='100%''>");
+          $("#mainImg").html("<img class='mainImg' src='"+ data.articles[0].urlToImage + "' width='100%'>");
           
           for (var i = 0; i < 4; i++)
           {
             $("#title" + i).html("<a href='#''>" + data.articles[i].title + "</a>");
             $("#desc" + i).html(data.articles[i].description);
-            $("#img" + i).html("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%''>");
+            $("#img" + i).html("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");
           }
         }
     })
@@ -95,7 +94,7 @@ $( document ).ready(function() {
           {
             $("#popularTitle" + i).append("<a href='#''>" + data.articles[i].title + "</a>");
             $("#popularDesc" + i).append(data.articles[i].description);
-            $("#pImg" + i).append("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%''>");
+            $("#pImg" + i).append("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");
             
           }
         }
@@ -115,14 +114,13 @@ function populateHome(){
       {
         $("#mainTitle").html("<a href='#''>" + data.articles[0].title + "</a>");
         $("#mainDesc").html(data.articles[0].description);
-        $("#mainImg").html("<img class='mainImg' src='"+ data.articles[0].urlToImage + "' width='100%''>");
+        $("#mainImg").html("<img class='mainImg' src='"+ data.articles[0].urlToImage + "' width='100%'>");
         
         for (var i = 0; i < 4; i++)
         {
           $("#title" + i).html("<a href='#''>" + data.articles[i].title + "</a>");
           $("#desc" + i).html(data.articles[i].description);
-          $("#article" + i).html("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%''>");
-        }
+          $("#img" + i).html("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");        }
       }
   })
 }
@@ -140,20 +138,120 @@ function populateWorld(){
       {
         $("#mainTitle").html("<a href='#''>" + data.articles[0].title + "</a>");
         $("#mainDesc").html(data.articles[0].description);
-        $("#mainImg").html("<img class='mainImg' src='"+ data.articles[0].urlToImage + "' width='100%''>");
+        $("#mainImg").html("<img class='mainImg' src='"+ data.articles[0].urlToImage + "' width='100%'>");
         
         for (var i = 0; i < 4; i++)
         {
           $("#title" + i).html("<a href='#''>" + data.articles[i].title + "</a>");
           $("#desc" + i).html(data.articles[i].description);
-          $("#article" + i).html("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%''>");
+          $("#img" + i).html("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");        }
+      }
+  })
+}
+
+function populatePolitics(){
+  $("#searchResults").hide();
+  $("#tab-1").show();
+  $.ajax( 
+  {
+    type: "GET",
+    dataType: "json",
+    cache: false,
+    url: "https://newsapi.org/v1/articles?source=breitbart-news&sortBy=latest&apiKey=37666d41fc4e49f9acc12919662f769d",
+    success: function(data) 
+    {
+      $("#mainTitle").html("<a href='#''>" + data.articles[0].title + "</a>");
+      $("#mainDesc").html(data.articles[0].description);
+      $("#mainImg").html("<img class='mainImg' src='"+ data.articles[0].urlToImage + "' width='100%'>");
+      
+      for (var i = 0; i < 4; i++)
+      {
+        $("#title" + i).html("<a href='#''>" + data.articles[i].title + "</a>");
+        $("#desc" + i).html(data.articles[i].description);
+        $("#img" + i).html("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");
+      }
+    }
+  })
+}
+
+function populateTechnology(){
+  $("#searchResults").hide();
+  $("#tab-1").show();
+   $.ajax( 
+  {
+      type: "GET",
+      dataType: "json",
+      cache: false,
+      url: "https://newsapi.org/v1/articles?source=ars-technica&sortBy=top&apiKey=37666d41fc4e49f9acc12919662f769d",
+      success: function(data) 
+      {
+        $("#mainTitle").html("<a href='#''>" + data.articles[0].title + "</a>");
+        $("#mainDesc").html(data.articles[0].description);
+        $("#mainImg").html("<img class='mainImg' src='"+ data.articles[0].urlToImage + "' width='100%'>");
+        
+        for (var i = 0; i < 4; i++)
+        {
+          $("#title" + i).html("<a href='#''>" + data.articles[i].title + "</a>");
+          $("#desc" + i).html(data.articles[i].description);
+          $("#img" + i).html("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");
         }
       }
   })
 }
 
+function populateEntertainment(){
+  $("#searchResults").hide();
+  $("#tab-1").show();
+   $.ajax( 
+  {
+      type: "GET",
+      dataType: "json",
+      cache: false,
+      url: "https://newsapi.org/v1/articles?source=the-lad-bible&sortBy=latest&apiKey=37666d41fc4e49f9acc12919662f769d",
+      success: function(data) 
+      {
+        $("#mainTitle").html("<a href='#''>" + data.articles[0].title + "</a>");
+        $("#mainDesc").html(data.articles[0].description);
+        $("#mainImg").html("<img class='mainImg' src='"+ data.articles[0].urlToImage + "' width='100%'>");
+        
+        for (var i = 0; i < 4; i++)
+        {
+
+          $("#title" + i).html("<a href='#''>" + data.articles[i].title + "</a>");
+          $("#desc" + i).html(data.articles[i].description);
+          $("#img" + i).html("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");
+        }
+      }
+  })
+}
+
+function populateScience(){
+  $("#searchResults").hide();
+  $("#tab-1").show();
+  $.ajax( 
+  {
+    type: "GET",
+    dataType: "json",
+    cache: false,
+    url: " https://newsapi.org/v1/articles?source=national-geographic&sortBy=top&apiKey=37666d41fc4e49f9acc12919662f769d",
+    success: function(data) 
+    {
+      $("#mainTitle").html("<a href='#''>" + data.articles[0].title + "</a>");
+      $("#mainDesc").html(data.articles[0].description);
+      $("#mainImg").html("<img class='mainImg' src='"+ data.articles[0].urlToImage + "' width='100%'>");
+      
+      for (var i = 0; i < 4; i++)
+      {
+        $("#title" + i).html("<a href='#''>" + data.articles[i].title + "</a>");
+        $("#desc" + i).html(data.articles[i].description);
+        $("#img" + i).html("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");
+      }
+    }
+  })
+}
 
 function populateSearch(input){
+  $("#tab-1").hide();
   $("#searchResults").empty();
   $("#searchResults").css("display", "block");
   $.ajax( 
@@ -169,7 +267,7 @@ function populateSearch(input){
         {
           $("#searchResults").append("<div class='box panel panel-default'><h2 class='title'>" + data.response.docs[i].headline.main + 
             "</h2><p id='desc'>" + data.response.docs[i].snippet + "</p><p><a href='" + data.response.docs[i].web_url + "'> New York Times source </a></p></div>");
-           
+          console.log(data.response.docs[i].headline.main); 
         }
       }
   })
