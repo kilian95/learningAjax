@@ -41,3 +41,15 @@
 	margin: auto;
 	margin-bottom: 20px;
 }
+
+#searchImg{
+	overflow: hidden;
+}
+
+#submit{
+	margin-bottom: 10px;
+}
+
+#tab-2{
+	display: none;
+}
