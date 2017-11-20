@@ -55,7 +55,7 @@
           <h2 id="mainTitle" class="title"></h2>
         </div>
         <div class="col-sm-4">
-          <!-- <h2>Most Popular</h2> -->
+          <h2>Most Popular</h2>
         </div> 
       </div>
 
@@ -104,12 +104,16 @@
   </div> 
 
   <div id="tab-2">
-    <h1> My News </h1>
+    <div id='myNewsTitle'>
+      <h1> My News </h1>
+      <button id="editBtn" type="button" class="btn btn-primary">Edit</button>
+    </div>
     <div class='box panel panel-default' id="getStarted">
       <h1> Customize What Type Of News You See</h1> 
-      <p> Have the news you want to see one page!</p>
+      <p> Have the news you want to see all one page!</p>
       <button id="getStartedBtn" type="button" class="btn btn-primary">Get Started</button>
     </div>
+    <p id="ajax-loader"><img src="ajax-loader.gif" ><p>
     <div id="myNewsContent"></div>
   </div>
 

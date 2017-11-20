@@ -53,3 +53,27 @@
 #tab-2{
 	display: none;
 }
+
+.container-fluid.myNews{
+	border-style: outset;
+	margin-bottom: 15px;
+}
+
+#ajax-loader{
+	display: none;
+	text-align: center;
+}
+
+#myNewsTitle{
+	margin-left: 60px;
+	display: none;
+}
+
+#myNewsTitle h1{
+	display: inline;
+}
+
+#myNewsTitle button{
+	float: right;
+	margin-right: 60px;
+}

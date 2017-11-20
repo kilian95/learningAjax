@@ -34,7 +34,10 @@ $( document ).ready(function() {
 
   $("#getStartedBtn").click(function() { 
     $('#customize').modal('show');
-    
+  });
+
+  $("#editBtn").click(function() { 
+    $('#customize').modal('show');
   });
 
   $(".list-group-item").click(function() {
@@ -46,12 +49,14 @@ $( document ).ready(function() {
   $("#submit").click(function() {
     $('#customize').modal('hide');
     $('#getStarted').hide();
+    $('#myNewsContent').empty();//delete what is currently displayed
 
     //get category and source of clicked items
     $('.table :checkbox:checked').each(function () {
       var category = $(this).parent().prevAll().eq(1).html();
-      var source = $("#" + "sel" + this.id + " :selected").attr('id') 
-      $('#myNewsContent').append('<div class="row"><div class="col-sm-8"><h2>' + category + '</h2><h2 id="myNewsTitle" class="title"></h2><p id="myNewsDesc"></p></div></div>');
+      var source = $("#" + "sel" + this.id + " :selected").attr('id')
+      
+      $('#myNewsContent').append('<div class="container-fluid myNews" id="newsItems"><div class="row"><div class="col-sm-8"><h2>' + category + '</h2><h2 id="' + source + '" class="title"></h2><p id="' + source + '" class="desc"></p></div></div></div');
       $.ajax( 
         {
           type: "GET",
@@ -60,19 +65,24 @@ $( document ).ready(function() {
           url: "https://newsapi.org/v2/top-headlines?sources=" + source + "&apiKey=37666d41fc4e49f9acc12919662f769d",
           success: function(data) 
           {
-            $("#myNewsTitle").html("<a href='#''>" + data.articles[0].title + "</a>");
-            $("#myNewsDesc").html(data.articles[0].description);
-            // $("#mainImg").html("<img class='mainImg' src='"+ data.articles[0].urlToImage + "' width='100%'>");
+            for (var i = 0; i < 2; i++){
+              $("#" + source + ".title").html("<a href='" + data.articles[0 ].url + "'  target='_blank'>" + data.articles[0].title + "</a>");
+              $("#" + source + ".desc").html(data.articles[0].description);
+              $("#mainImg").html("<img class='mainImg' src='"+ data.articles[0].urlToImage + "' width='100%'>");
+            }
           }
         }) 
-     }); 
+     });
+    $('#myNewsTitle').show(); //show edit button
   });
 
-    //only works with one category because the id is the same for both.    
-        
+  //show loading gif untill ajax completes
+  $(document).ajaxStart(function() {
+    $('#ajax-loader').show(); 
+  }).ajaxStop(function() {
+    $('#ajax-loader').hide();
+  });  
       
-    
-
   //---------tabs ----------------------------
   $(".tab-link").click(function(){
     var tab_id = $(this).attr('data-tab');
@@ -106,29 +116,29 @@ $( document ).ready(function() {
   })
 
 //--------------------------------------------------------------------------------
-  populateMyNews();
+  // populateMyNews();
   //populate home
-  // populate("https://newsapi.org/v1/articles?source=al-jazeera-english&sortBy=latest&apiKey=37666d41fc4e49f9acc12919662f769d");
+  populate("https://newsapi.org/v1/articles?source=al-jazeera-english&sortBy=latest&apiKey=37666d41fc4e49f9acc12919662f769d");
   
   //most popular
-    // $.ajax( 
-    // {
-    //   type: "GET",
-    //   dataType: "json",
-    //   cache: false,
-    //   url: "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=37666d41fc4e49f9acc12919662f769d",
-    //   success: function(data) 
-    //   {
+    $.ajax( 
+    {
+      type: "GET",
+      dataType: "json",
+      cache: false,
+      url: "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=37666d41fc4e49f9acc12919662f769d",
+      success: function(data) 
+      {
        
-    //     for (var i = 0; i < 2; i++)
-    //     {
-    //       $("#popularTitle" + i).append("<a href='#''>" + data.articles[i].title + "</a>");
-    //       $("#popularDesc" + i).append(data.articles[i].description);
-    //       $("#pImg" + i).append("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");
+        for (var i = 0; i < 2; i++)
+        {
+          $("#popularTitle" + i).append("<a href='#''>" + data.articles[i].title + "</a>");
+          $("#popularDesc" + i).append(data.articles[i].description);
+          $("#pImg" + i).append("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");
           
-    //     }
-    //   }
-    // })
+        }
+      }
+    })
 });
 
 function populateSearch(input){
