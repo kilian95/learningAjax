@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 
-  $('[data-toggle="tooltip"]').tooltip();  //tooltip
+  $('[data-toggle="tooltip"]').tooltip();  //tooltip for search
 
   //display modal and text in modal
   $(".title").click(function() { 
@@ -30,8 +30,15 @@ $( document ).ready(function() {
     populateSearch(input);
   });
 
-// ---------------------- modal for mynews -----------------------------
+  //show loading gif untill ajax completes
+  $(document).ajaxStart(function() {
+    $('#ajax-loader').show(); 
+  }).ajaxStop(function() {
+    $('#ajax-loader').hide();
+  });  
 
+
+// ---------------------- modal for mynews -----------------------------
   $("#getStartedBtn").click(function() { 
     $('#customize').modal('show');
   });
@@ -45,7 +52,6 @@ $( document ).ready(function() {
     $(this).addClass('active'); 
   });
 
-  
   $("#submit").click(function() {
     $('#customize').modal('hide');
     $('#getStarted').hide();
@@ -65,23 +71,14 @@ $( document ).ready(function() {
           url: "https://newsapi.org/v2/top-headlines?sources=" + source + "&apiKey=37666d41fc4e49f9acc12919662f769d",
           success: function(data) 
           {
-            for (var i = 0; i < 2; i++){
-              $("#" + source + ".title").html("<a href='" + data.articles[0 ].url + "'  target='_blank'>" + data.articles[0].title + "</a>");
-              $("#" + source + ".desc").html(data.articles[0].description);
-              $("#mainImg").html("<img class='mainImg' src='"+ data.articles[0].urlToImage + "' width='100%'>");
-            }
+            $("#" + source + ".title").html("<a href='" + data.articles[0 ].url + "'  target='_blank'>" + data.articles[0].title + "</a>");
+            $("#" + source + ".desc").html(data.articles[0].description);
+            $("#mainImg").html("<img class='mainImg' src='"+ data.articles[0].urlToImage + "' width='100%'>");
           }
         }) 
      });
     $('#myNewsTitle').show(); //show edit button
   });
-
-  //show loading gif untill ajax completes
-  $(document).ajaxStart(function() {
-    $('#ajax-loader').show(); 
-  }).ajaxStop(function() {
-    $('#ajax-loader').hide();
-  });  
       
   //---------tabs ----------------------------
   $(".tab-link").click(function(){
@@ -90,10 +87,10 @@ $( document ).ready(function() {
     
     switch(tab_id) {
       case "tab-1"://home
-        apiUrl = "https://newsapi.org/v1/articles?source=al-jazeera-english&sortBy=latest&apiKey=37666d41fc4e49f9acc12919662f769d";
+        apiUrl = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=latest&apiKey=37666d41fc4e49f9acc12919662f769d";
         break;
       case "tab-2"://world
-       apiUrl = "https://newsapi.org/v1/articles?source=der-tagesspiegel&sortBy=latest&apiKey=37666d41fc4e49f9acc12919662f769d";
+       apiUrl = "https://newsapi.org/v1/articles?source=al-jazeera-english&sortBy=latest&apiKey=37666d41fc4e49f9acc12919662f769d";
         break;
       case "tab-3"://politics
         apiUrl = "https://newsapi.org/v1/articles?source=bbc-news&category=politics&sortBy=latest&apiKey=37666d41fc4e49f9acc12919662f769d";
@@ -116,7 +113,6 @@ $( document ).ready(function() {
   })
 
 //--------------------------------------------------------------------------------
-  // populateMyNews();
   //populate home
   populate("https://newsapi.org/v1/articles?source=al-jazeera-english&sortBy=latest&apiKey=37666d41fc4e49f9acc12919662f769d");
   
@@ -129,7 +125,6 @@ $( document ).ready(function() {
       url: "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=37666d41fc4e49f9acc12919662f769d",
       success: function(data) 
       {
-       
         for (var i = 0; i < 2; i++)
         {
           $("#popularTitle" + i).append("<a href='#''>" + data.articles[i].title + "</a>");
@@ -143,6 +138,7 @@ $( document ).ready(function() {
 
 function populateSearch(input){
   $("#tab-1").hide();
+  $("#tab-2").hide();
   $("#searchResults").empty();
   $("#searchResults").css("display", "block");
   $.ajax( 
@@ -157,7 +153,8 @@ function populateSearch(input){
       
       for (var i = 0; i < 5; i++)
       {
-        $("#searchResults").append("<div class='box panel panel-default'><div id='searchImg'><img class='img-preview' src='"+ data.articles[i].urlToImage + "' height='100%'></div><h2 class='title'>" + data.articles[i].title + 
+        $("#searchResults").append("<div class='box panel panel-default'><div id='searchImg'><img class='img-preview' src='"+ 
+          data.articles[i].urlToImage + "' height='100%'></div><h2 class='title'>" + data.articles[i].title + 
           "</h2><p id='desc'>" + data.articles[i].description + "</p><p><a href='" + data.articles[i].url + "'>" + data.articles[i].author + "</a></p></div>");
       }
     }
