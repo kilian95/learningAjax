@@ -38,7 +38,7 @@ $( document ).ready(function() {
   });  
 
 
-// ---------------------- modal for mynews -----------------------------
+  // ---------------------- modal for mynews -----------------------------
   $("#getStartedBtn").click(function() { 
     $('#customize').modal('show');
   });
@@ -57,12 +57,14 @@ $( document ).ready(function() {
     $('#getStarted').hide();
     $('#myNewsContent').empty();//delete what is currently displayed
 
+    var i = 0;
     //get category and source of clicked items
     $('.table :checkbox:checked').each(function () {
       var category = $(this).parent().prevAll().eq(1).html();
       var source = $("#" + "sel" + this.id + " :selected").attr('id')
       
-      $('#myNewsContent').append('<div class="container-fluid myNews" id="newsItems"><div class="row"><div class="col-sm-8"><h2>' + category + '</h2><h2 id="' + source + '" class="title"></h2><p id="' + source + '" class="desc"></p></div></div></div');
+      $('#myNewsContent').append('<div class="container-fluid myNews" id="newsItems' + (i++) + '"><div class="row"><div class="col-sm-8"><h2>' + category + '</h2><h2 id="' + source + '" class="title"></h2><p id="' + source + '" class="desc"></p></div></div></div');
+     
       $.ajax( 
         {
           type: "GET",
@@ -77,9 +79,17 @@ $( document ).ready(function() {
           }
         }) 
      });
-    $('#myNewsTitle').show(); //show edit button
+    $('#myNewsTitle').show(); //show edit button   
   });
-      
+
+  //click and drag categories
+  $("#myNewsContent").sortable({
+    placeholder: "ui-state-highlight",
+  });
+
+  $("#myNewsContent").disableSelection();
+  
+  
   //---------tabs ----------------------------
   $(".tab-link").click(function(){
     var tab_id = $(this).attr('data-tab');
@@ -112,29 +122,17 @@ $( document ).ready(function() {
     populateMyNews();
   })
 
-//--------------------------------------------------------------------------------
+  //--------------------------------------------------------------------------------
   //populate home
-  populate("https://newsapi.org/v1/articles?source=al-jazeera-english&sortBy=latest&apiKey=37666d41fc4e49f9acc12919662f769d");
+  // populate("https://newsapi.org/v1/articles?source=bbc-news&sortBy=latest&apiKey=37666d41fc4e49f9acc12919662f769d");
   
   //most popular
-    $.ajax( 
-    {
-      type: "GET",
-      dataType: "json",
-      cache: false,
-      url: "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=37666d41fc4e49f9acc12919662f769d",
-      success: function(data) 
-      {
-        for (var i = 0; i < 2; i++)
-        {
-          $("#popularTitle" + i).append("<a href='#''>" + data.articles[i].title + "</a>");
-          $("#popularDesc" + i).append(data.articles[i].description);
-          $("#pImg" + i).append("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");
-          
-        }
-      }
-    })
+  // populateMostPopular();
+
+  populateMyNews();
+    
 });
+
 
 function populateSearch(input){
   $("#tab-1").hide();
@@ -184,6 +182,26 @@ function populate(apiUrl){
         $("#img" + i).html("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");        }
     }
   })
+}
+
+function populateMostPopular(){
+  $.ajax( 
+    {
+      type: "GET",
+      dataType: "json",
+      cache: false,
+      url: "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=37666d41fc4e49f9acc12919662f769d",
+      success: function(data) 
+      {
+        for (var i = 0; i < 2; i++)
+        {
+          $("#popularTitle" + i).append("<a href='#''>" + data.articles[i].title + "</a>");
+          $("#popularDesc" + i).append(data.articles[i].description);
+          $("#pImg" + i).append("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");
+          
+        }
+      }
+    })
 }
 
 function populateMyNews(){

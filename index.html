@@ -3,7 +3,8 @@
 	<link rel="stylesheet" type="text/css" href="index.css">
   <title>News</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="index.js" type="text/javascript"></script> 
 </head>
@@ -47,16 +48,16 @@
   </nav>
   <p id="ajax-loader"><img src="ajax-loader.gif" ><p>
   <div id="searchResults"></div>
-        
+     
   <div id="tab-1" class="tab-content current">
     <div class="container-fluid" id="newsItems">
       <div class="row">
         <div class="col-sm-8">
           <h2 id="mainTitle" class="title"></h2>
         </div>
-        <div class="col-sm-4">
+        <!-- <div class="col-sm-4">
           <h2>Most Popular</h2>
-        </div> 
+        </div> --> 
       </div>
 
       <div class="row">
@@ -136,7 +137,7 @@
               </thead>
               <tbody>
                 <tr id="1">
-                  <td id="test"> Buisiness</td>
+                  <td> Buisiness</td>
                   <td>
                     <select class="form-control" id="sel1">
                       <option id="bloomberg">Bloomberg</option>
