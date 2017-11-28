@@ -222,5 +222,6 @@ function populateMostPopular(){
 
 function populateMyNews(){
   $("#tab-1").hide();
+  $("#searchResults").hide();
   $("#tab-2").show();
 }
