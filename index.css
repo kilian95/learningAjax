@@ -67,3 +67,15 @@
 	float:right;
 	margin-right:60px
 }
+
+.showMore{
+	display: none;
+}
+
+#more{
+	text-align:center;
+	border-style: dotted;
+	cursor: pointer;
+	width: 50%;
+	margin: auto;
+}

@@ -83,9 +83,7 @@ $( document ).ready(function() {
   });
 
   //click and drag categories
-  $("#myNewsContent").sortable({
-    placeholder: "ui-state-highlight",
-  });
+  $("#myNewsContent").sortable();
 
   $("#myNewsContent").disableSelection();
   
@@ -122,17 +120,13 @@ $( document ).ready(function() {
     populateMyNews();
   })
 
-  //--------------------------------------------------------------------------------
   //populate home
-  // populate("https://newsapi.org/v1/articles?source=bbc-news&sortBy=latest&apiKey=37666d41fc4e49f9acc12919662f769d");
+  populate("https://newsapi.org/v1/articles?source=bbc-news&sortBy=latest&apiKey=37666d41fc4e49f9acc12919662f769d");
   
   //most popular
-  // populateMostPopular();
-
-  populateMyNews();
+  populateMostPopular();
     
 });
-
 
 function populateSearch(input){
   $("#tab-1").hide();
@@ -149,15 +143,36 @@ function populateSearch(input){
     success: function(data) 
     {
       
-      for (var i = 0; i < 5; i++)
+      for (var i = 0; i < 10; i++)
       {
-        $("#searchResults").append("<div class='box panel panel-default'><div id='searchImg'><img class='img-preview' src='"+ 
-          data.articles[i].urlToImage + "' height='100%'></div><h2 class='title'>" + data.articles[i].title + 
-          "</h2><p id='desc'>" + data.articles[i].description + "</p><p><a href='" + data.articles[i].url + "'>" + data.articles[i].author + "</a></p></div>");
+        if (i < 5)
+        {
+          $("#searchResults").append("<article><div class='row'><div class='col-sm-4'><img class='pull-right' src='" + 
+          data.articles[i].urlToImage + "' height='100px'></div><div class='col-sm-6'><h3><a href='" + 
+          data.articles[i].url + "' target='_blank'>" + data.articles[i].title + "</a></h3><div class='row'><p>" + 
+          data.articles[i].description + "</p></div</div></div></article>");
+        }
+        else if (i >= 5)
+        {
+          $("#searchResults").append("<div class='showMore'><article><div class='row'><div class='col-sm-4'><img class='pull-right' src='" + 
+          data.articles[i].urlToImage + "' height='100px'></div><div class='col-sm-6'><h3><a href='" + 
+          data.articles[i].url + "' target='_blank'>" + data.articles[i].title + "</a></h3><div class='row'><p>" + 
+          data.articles[i].description + "</p></div</div></div></article></div>");
+        }
       }
+      $("#searchResults").append("<h4 id='more'> Show more </h4>")
     }
   })
 }
+
+//on click is used as btn is dynamically added.
+$(function() {
+  $("#searchResults").on( "click", "#more", function() {
+    $(".showMore").css("display", "block");
+    $("#more").hide();
+  });
+});
+
 
 function populate(apiUrl){
   $("#searchResults").hide();
@@ -179,7 +194,8 @@ function populate(apiUrl){
       {
         $("#title" + i).html("<a href='#''>" + data.articles[i].title + "</a>");
         $("#desc" + i).html(data.articles[i].description);
-        $("#img" + i).html("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");        }
+        $("#img" + i).html("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");        
+      }
     }
   })
 }
