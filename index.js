@@ -52,10 +52,14 @@ $( document ).ready(function() {
     $(this).addClass('active'); 
   });
 
+
+  //my news
   $("#submit").click(function() {
     $('#customize').modal('hide');
     $('#getStarted').hide();
     $('#myNewsContent').empty();//delete what is currently displayed
+
+    $('#myNewsContent').append('<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Page set up succesfully!</div>');
 
     var i = 0;
     //get category and source of clicked items
@@ -63,9 +67,10 @@ $( document ).ready(function() {
       var category = $(this).parent().prevAll().eq(1).html();
       var source = $("#" + "sel" + this.id + " :selected").attr('id')
       
-      $('#myNewsContent').append('<div class="container-fluid myNews" id="newsItems' + (i++) + '"><div class="row"><div class="col-sm-8"><h2>' + category + '</h2><h2 id="' + source + '" class="title"></h2><p id="' + source + '" class="desc"></p></div></div></div');
+      $('#myNewsContent').append('<div class="container-fluid myNews" id="newsItems' + (i++) + '"><h2>' + 
+        category + '</h2><h2 id="' + source + '" class="title"></h2><p id="' + source + '" class="desc"></p></div');
      
-      $.ajax( 
+      $.ajax(
         {
           type: "GET",
           dataType: "json",
@@ -73,9 +78,10 @@ $( document ).ready(function() {
           url: "https://newsapi.org/v2/top-headlines?sources=" + source + "&apiKey=37666d41fc4e49f9acc12919662f769d",
           success: function(data) 
           {
-            $("#" + source + ".title").html("<a href='" + data.articles[0 ].url + "'  target='_blank'>" + data.articles[0].title + "</a>");
-            $("#" + source + ".desc").html(data.articles[0].description);
-            $("#mainImg").html("<img class='mainImg' src='"+ data.articles[0].urlToImage + "' width='100%'>");
+            
+              $("#" + source + ".title").html("<a href='" + data.articles[0 ].url + "'  target='_blank'>" + data.articles[0].title + "</a>");
+              $("#" + source + ".desc").html(data.articles[0].description);
+            
           }
         }) 
      });
@@ -206,13 +212,15 @@ function populateMostPopular(){
       type: "GET",
       dataType: "json",
       cache: false,
-      url: "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=37666d41fc4e49f9acc12919662f769d",
+      url: "https://newsapi.org/v2/top-headlines?sources=associated-press&apiKey=37666d41fc4e49f9acc12919662f769d",
       success: function(data) 
       {
         for (var i = 0; i < 2; i++)
         {
           $("#popularTitle" + i).append("<a href='#''>" + data.articles[i].title + "</a>");
           $("#popularDesc" + i).append(data.articles[i].description);
+          //limit word count displayed
+
           $("#pImg" + i).append("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");
           
         }
