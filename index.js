@@ -1,21 +1,39 @@
 $( document ).ready(function() {
 
+//----------------- mobile billing -----------------------------
+  $("#testBtn").click(function() { 
+    $('#paymentModal').modal('show');
+  });
+
+   $("#getPinBtn").click(function() { 
+    var msisdn = $("#msisdnInput").val();
+    // provision(msisdn);
+    // getPin();
+    makeCharge();
+  });
+//----------------------------------------------------------------
+
   $('[data-toggle="tooltip"]').tooltip();  //tooltip for search
 
   //display modal and text in modal
   $(".title").click(function() { 
     $('#myModal').modal('show');
-    $(".modal-title").empty().append($(this).text());
+    $("#mTitle").empty().append($(this).text());
 
     if (this.id == "mainTitle"){
       $(".modal-desc").empty().append($("#mainDesc").text());
       var img = $(".mainImg").attr('src');
       $(".modal-image").empty().append("<img class='img-preview' src='"+ img + "' width='100%''>");
+      var href = $('#mainLink').attr('href');
+      $(".modal-link").attr('href', href);
+
     }
     else{
       $(".modal-desc").empty().append($(this).next().text());
       var img = $(this).siblings(".imgtPrev").children(".img-preview").attr('src');
       $(".modal-image").empty().append("<img class='img-preview' src='"+ img + "' width='100%''>");
+      var href = $(this).siblings(".link").attr('href');
+      $(".modal-link").attr('href', href);
     }
   });
 
@@ -195,12 +213,14 @@ function populate(apiUrl){
       $("#mainTitle").html("<a href='#''>" + data.articles[0].title + "</a>");
       $("#mainDesc").html(data.articles[0].description);
       $("#mainImg").html("<img class='mainImg' src='"+ data.articles[0].urlToImage + "' width='100%'>");
+      $("#mainLink").attr('href', data.articles[0].url);
       
       for (var i = 1; i < 5; i++)
       {
         $("#title" + i).html("<a href='#''>" + data.articles[i].title + "</a>");
         $("#desc" + i).html(data.articles[i].description);
         $("#img" + i).html("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");        
+        $("#link" + i).attr('href', data.articles[i].url);
       }
     }
   })
@@ -212,7 +232,8 @@ function populateMostPopular(){
       type: "GET",
       dataType: "json",
       cache: false,
-      url: "https://newsapi.org/v2/top-headlines?sources=associated-press&apiKey=37666d41fc4e49f9acc12919662f769d",
+      // url: "https://newsapi.org/v2/top-headlines?sources=associated-press&apiKey=37666d41fc4e49f9acc12919662f769d",
+      url: "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=37666d41fc4e49f9acc12919662f769d",
       success: function(data) 
       {
         for (var i = 0; i < 2; i++)
@@ -232,4 +253,62 @@ function populateMyNews(){
   $("#tab-1").hide();
   $("#searchResults").hide();
   $("#tab-2").show();
+}
+
+var username = "ndyfu5y4i";
+var password = "kilian_413_sbox";
+function provision(msisdn){
+  $.ajax( 
+    {
+      type: "POST",
+      dataType: "json",
+      cache: false,
+      crossDomain: true,
+      url: "https://api.sla-alacrity.com/v2.2/sandbox/provision?msisdn=" + msisdn + "&merchant=partner:0100471090f093959e73cc6c9fb52c91788d6702&amount=10&currency=MR",
+      headers: {
+        "Authorization": "Basic a2lsaWFuXzQxM19zYm94Om5keWZ1NXk0aQ=="
+      },
+      success: function(data) 
+      {
+        alert("success");
+      }
+    })
+}
+
+function getPin(){
+  
+  $.ajax( 
+    {
+      type: "POST",
+      dataType: "json",
+      cache: false,
+      crossDomain: true,
+      url: "https://api.sla-alacrity.com/v2.2/pin?msisdn=60321234567&campaign=campaign:12fbd1697672269016d322277a8d6880bdd69425&merchant=partner:0100471090f093959e73cc6c9fb52c91788d6702&language=en",
+      headers: {
+        "Authorization": "Basic a2lsaWFuXzQxM19zYm94Om5keWZ1NXk0aQ=="
+      },
+      success: function(data) 
+      {
+        alert("success");
+      }
+    })
+}
+
+function makeCharge(){
+
+  $.ajax( 
+    {
+      type: "POST",
+      dataType: "json",
+      cache: false,
+      crossDomain: true,
+      url: "https://api.sla-alacrity.com/v2.2/charge?msisdn=60321234567&campaign=campaign:12fbd1697672269016d322277a8d6880bdd69425&merchant=partner:0100471090f093959e73cc6c9fb52c91788d6702&amount=1&currency=MR&correlator=abcde&description=test+charge+from+kilian&language=ar",
+      headers: {
+        "Authorization": "Basic a2lsaWFuXzQxM19zYm94Om5keWZ1NXk0aQ=="
+      },
+      success: function(data) 
+      {
+        alert("success");
+      }
+    })
 }

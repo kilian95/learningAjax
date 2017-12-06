@@ -3,7 +3,6 @@
 	<link rel="stylesheet" type="text/css" href="index.css">
   <title>News</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  
 </head>
 <body>
   <nav class="navbar navbar-default custom">
@@ -43,6 +42,29 @@
       </ul>
     </div>
   </nav>
+
+ <!--  <button id="testBtn" type="button" class="btn btn-primary">Test</button>
+  <div id="paymentModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <input placeholder="MSISDN"  id="msisdnInput" type="text">
+          <button id="getPinBtn" type="button" class="btn btn-primary">Get PIN</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+
+
+
   <p id="ajax-loader"><img src="ajax-loader.gif" ><p>
   <div id="searchResults"></div>
      
@@ -60,6 +82,7 @@
       <div class="row">
         <div class="col-sm-4">
           <p id="mainDesc"></p>
+          <a id="mainLink" href="">Source</a>
         </div>
         <div id="mainImg" class="col-sm-4">
         </div>
@@ -75,21 +98,25 @@
           <div class="imgtPrev" id="img1"></div>
           <h4 id="title1" class="title"></h4>
           <p id="desc1"></p>
+          <a class="link" id="link1" href="">Source</a>
         </div>
         <div class="col-sm-2">
           <div class="imgtPrev" id="img2"></div>
           <h4 id="title2" class="title"></h4>
           <p id="desc2" class="desc"></p>
+          <a class="link" id="link2" href="">Source</a>
         </div>
         <div class="col-sm-2">
           <div class="imgtPrev" id="img3"></div>
           <h4 id="title3" class="title"></h4>
           <p id="desc3" class="desc"></p>
+          <a class="link" id="link3" href="">Source</a>
         </div>
         <div class="col-sm-2">
           <div class="imgtPrev" id="img4"></div>
           <h4 id="title4" class="title"></h4>
           <p id="desc4" class="desc"></p>
+          <a class="link" id="link4" href="">Source</a>
         </div>
         <div id="popular1" class="col-sm-2">
           <div class="imgtPrev" id="pImg1"></div>
@@ -209,7 +236,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"></h4>
+          <h4 id="mTitle" class="modal-title"></h4>
         </div>
         <div class="modal-body">
           <div class="modal-image">
@@ -217,13 +244,12 @@
           <p class="modal-desc"></p>
         </div>
         <div class="modal-footer">
+          <a class="modal-link" href="">Full Article</a>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
-
-
 
 
 </body>
