@@ -29,7 +29,10 @@ $( document ).ready(function() {
 
     }
     else{
-      $(".modal-desc").empty().append($(this).next().text());
+      // $(".modal-desc").empty().append($(this).next().text());
+
+      $(".modal-desc").empty().append($(this).nextAll().eq(1).text());
+
       var img = $(this).siblings(".imgtPrev").children(".img-preview").attr('src');
       $(".modal-image").empty().append("<img class='img-preview' src='"+ img + "' width='100%''>");
       var href = $(this).siblings(".link").attr('href');
@@ -232,18 +235,25 @@ function populateMostPopular(){
       type: "GET",
       dataType: "json",
       cache: false,
-      // url: "https://newsapi.org/v2/top-headlines?sources=associated-press&apiKey=37666d41fc4e49f9acc12919662f769d",
-      url: "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=37666d41fc4e49f9acc12919662f769d",
+      url: "https://newsapi.org/v2/top-headlines?sources=associated-press&apiKey=37666d41fc4e49f9acc12919662f769d",
+      
       success: function(data) 
       {
-        for (var i = 0; i < 2; i++)
+        for (var i = 0; i < 3; i++)
         {
+          if(i==1){continue;} //skip the second articles as its always the same as the first.
           $("#popularTitle" + i).append("<a href='#''>" + data.articles[i].title + "</a>");
           $("#popularDesc" + i).append(data.articles[i].description);
-          //limit word count displayed
+          
+          //limit charcters displayed for preview
+          if ($("#popularDesc" + i).text().length > 100){
+            $("#popularDesc" + i).text( $("#popularDesc" + i).text().substring(0,100)+"..." );
+          }
+
+          //full description to be displayed in modal
+          $("#popularDescFull" + i).append(data.articles[i].description);
 
           $("#pImg" + i).append("<img class='img-preview' src='"+ data.articles[i].urlToImage + "' width='100%'>");
-          
         }
       }
     })

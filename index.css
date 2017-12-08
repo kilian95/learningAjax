@@ -79,3 +79,19 @@
 	width: 50%;
 	margin: auto;
 }
+
+.popDesc{
+	display: none;
+}
+
+#navContainer{
+	background-color: #1691cc;
+}
+
+.tab-link > a, .myNews > a, .glyphicon-info-sign {
+	color: #fff!important;
+}
+
+.navCurrent{
+	background-color: #2a6aa2!important;
+}
